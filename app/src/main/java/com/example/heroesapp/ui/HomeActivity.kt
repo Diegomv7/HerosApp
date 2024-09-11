@@ -15,7 +15,9 @@ import com.example.heroesapp.R
 
 class HomeActivity : AppCompatActivity() {
     lateinit var username : TextView
-    lateinit var logoutbtn : ImageView
+    lateinit var logoutBtn : ImageView
+    lateinit var dcBtn : ImageButton
+    lateinit var marvelBtn : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +25,28 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         val sharedPreferences = getSharedPreferences("mypref", MODE_PRIVATE)
         username = findViewById(R.id.usernameTV)
-        logoutbtn = findViewById(R.id.logoutbtn)
+        logoutBtn = findViewById(R.id.logoutbtn)
+        dcBtn = findViewById(R.id.dcBtn)
+        marvelBtn = findViewById(R.id.marvelBtn)
 
-        logoutbtn.setOnClickListener {
+
+        logoutBtn.setOnClickListener {
             val editor = sharedPreferences.edit()
             editor.remove("isLogged")
             editor.apply()
 
             val intent = Intent(this@HomeActivity,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        dcBtn.setOnClickListener {
+            val intent = Intent(this@HomeActivity, HeroesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        marvelBtn.setOnClickListener {
+            val intent = Intent(this@HomeActivity, HeroesActivity::class.java)
             startActivity(intent)
             finish()
         }

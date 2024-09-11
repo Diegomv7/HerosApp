@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val editor = sharedPreferences.edit()
-            editor.putBoolean("islogged", true)
+            editor.putBoolean("isLogged", true)
             editor.apply()
 
             startActivity(intent)
