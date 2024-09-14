@@ -2,6 +2,7 @@ package com.example.heroesapp.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -26,7 +27,7 @@ class HeroesActivity : AppCompatActivity() {
        val sharedPreferences = getSharedPreferences("myprefs", MODE_PRIVATE)
         heroestitle = findViewById(R.id.herosTitle)
         heroesRecyclerView = findViewById(R.id.heroesRecyclerView)
-        heroesRecyclerView.adapter = HeroAdapter(Heroes.Heroes)
+        heroesRecyclerView.adapter = HeroAdapter(Heroes.Heroes){ heroes -> Log.i("HomeActivityHeroes", heroes.name)   }
         heroesRecyclerView.layoutManager = GridLayoutManager(this, 2)
     }
 }

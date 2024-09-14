@@ -1,33 +1,36 @@
 package com.example.heroesapp.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.heroesapp.MainActivity
 import com.example.heroesapp.R
+import com.example.heroesapp.adapters.PublisherAdapter
+import com.example.heroesapp.models.Publisher
 
-class HomeActivity : AppCompatActivity() {
+class PublisherActivity : AppCompatActivity() {
     lateinit var username : TextView
     lateinit var logoutBtn : ImageView
-    lateinit var dcBtn : ImageButton
-    lateinit var marvelBtn : ImageButton
+    lateinit var publisherRecyclerview : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_publisher)
         val sharedPreferences = getSharedPreferences("mypref", MODE_PRIVATE)
         username = findViewById(R.id.usernameTV)
         logoutBtn = findViewById(R.id.logoutbtn)
-        dcBtn = findViewById(R.id.dcBtn)
-        marvelBtn = findViewById(R.id.marvelBtn)
+        publisherRecyclerview = findViewById(R.id.publisherRecyclerview)
+        publisherRecyclerview.adapter = PublisherAdapter(Publisher.Publishers){publisher -> Log.i("PublisherActivity", publisher.Name)}
+        publisherRecyclerview.layoutManager = GridLayoutManager(this, 1)
 
 
         logoutBtn.setOnClickListener {
@@ -35,21 +38,13 @@ class HomeActivity : AppCompatActivity() {
             editor.remove("isLogged")
             editor.apply()
 
-            val intent = Intent(this@HomeActivity,MainActivity::class.java)
+            val intent = Intent(this@PublisherActivity,MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        dcBtn.setOnClickListener {
-            val intent = Intent(this@HomeActivity, HeroesActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        marvelBtn.setOnClickListener {
-            val intent = Intent(this@HomeActivity, HeroesActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+
+
     }
 }
 

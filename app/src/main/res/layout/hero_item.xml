@@ -17,6 +17,7 @@
             android:id="@+id/heroe_name"
             android:text="Nombre del Heroe"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
