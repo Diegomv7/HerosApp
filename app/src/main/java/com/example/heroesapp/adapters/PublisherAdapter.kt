@@ -27,7 +27,7 @@ class PublisherAdapter (val publishers: List<Publisher>, val onClick: (Publisher
         val publisher = publishers[position]
         Picasso.get().load(publisher.Image).into(holder.publisherImage)
         holder.itemView.setOnClickListener{
-            Log.i("Hero",publisher.Name)
+            Log.i("Publisher",publisher.Name)
             onClick(publisher)
         }
     }

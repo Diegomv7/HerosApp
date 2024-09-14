@@ -15,6 +15,7 @@ import com.example.heroesapp.MainActivity
 import com.example.heroesapp.R
 import com.example.heroesapp.adapters.PublisherAdapter
 import com.example.heroesapp.models.Publisher
+import com.example.heroesapp.models.User
 
 class PublisherActivity : AppCompatActivity() {
     lateinit var username : TextView
@@ -26,10 +27,18 @@ class PublisherActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_publisher)
         val sharedPreferences = getSharedPreferences("mypref", MODE_PRIVATE)
+        val userEmail = intent.getStringExtra("userEmail")
+        val user = User.staticUsers.firstOrNull{ it.email == userEmail }
         username = findViewById(R.id.usernameTV)
         logoutBtn = findViewById(R.id.logoutbtn)
+        username.text = user?.name
         publisherRecyclerview = findViewById(R.id.publisherRecyclerview)
-        publisherRecyclerview.adapter = PublisherAdapter(Publisher.Publishers){publisher -> Log.i("PublisherActivity", publisher.Name)}
+        publisherRecyclerview.adapter = PublisherAdapter(Publisher.Publishers){publisher -> Log.i("PublisherActivity", publisher.Name)
+        val intent = Intent(this@PublisherActivity, HeroesActivity::class.java).apply {
+            putExtra("IdPublisher", publisher.id)
+        }
+            startActivity(intent)
+        }
         publisherRecyclerview.layoutManager = GridLayoutManager(this, 1)
 
 

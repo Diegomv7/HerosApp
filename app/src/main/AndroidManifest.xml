@@ -16,12 +16,6 @@
                 android:name=".ui.HeroesActivity"
                 android:exported="false"/>
         <activity
-                android:name=".heroes"
-                android:exported="false"/>
-        <activity
-                android:name=".HeroesActivity"
-                android:exported="false"/>
-        <activity
                 android:name=".ui.PublisherActivity"
                 android:exported="false"/>
         <activity

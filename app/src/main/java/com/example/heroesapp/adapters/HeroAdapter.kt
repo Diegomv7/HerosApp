@@ -12,7 +12,7 @@ import com.example.heroesapp.R
 import com.example.heroesapp.models.Heroes
 import com.squareup.picasso.Picasso
 
-class HeroAdapter (val heroes: List<Heroes>,val onClick: (Heroes)->Unit) : RecyclerView.Adapter<HeroViewHolder>()
+class HeroAdapter (val heroes: List<Heroes>) : RecyclerView.Adapter<HeroViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.hero_item,parent,false)
@@ -27,10 +27,6 @@ class HeroAdapter (val heroes: List<Heroes>,val onClick: (Heroes)->Unit) : Recyc
         val hero = heroes[position]
         holder.heroName.text = hero.name
         Picasso.get().load(hero.imgen).into(holder.heroImage)
-        holder.itemView.setOnClickListener{
-            Log.i("Hero",hero.name)
-            onClick(hero)
-        }
     }
 
 }
